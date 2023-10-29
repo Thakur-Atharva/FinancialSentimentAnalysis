@@ -34,8 +34,12 @@ for symbol in symbols:
     titles = [article['title'] for article in data['data']]
     urls = [article['url'] for article in data['data']]
 
+    sentiment = [article['entities'][0]['sentiment_score'] for article in data['data']]
+
+    
+
     # Store the data in a dictionary
-    company_data = {'symbol': symbol, 'titles': titles, 'urls': urls}
+    company_data = {'symbol': symbol, 'titles': titles, 'urls': urls, 'sentiment': sentiment}
     
     # Append the data to the list
     company_data_list.append(company_data)
