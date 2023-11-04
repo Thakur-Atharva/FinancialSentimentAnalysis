@@ -6,8 +6,11 @@ import datetime
 conn = http.client.HTTPSConnection('api.marketaux.com')
 
 # Read the company symbols from the excel file
-df = pd.read_excel('SP_500_Companies.xlsx')
+df = pd.read_excel('S&P - first 50.xlsx')
 symbols = df['Symbol'].tolist()
+
+# Create an empty list to store the data
+company_data_list = []
 
 # Loop through each symbol
 for symbol in symbols:
@@ -18,7 +21,7 @@ for symbol in symbols:
         'symbols': symbol,
         'limit': 3,
         'search': 'stock + {}'.format(symbol),
-        'published_after': (datetime.datetime.now() - datetime.timedelta(days=1)).strftime('%Y-%m-%dT%H:%M')
+        'published_after': (datetime.datetime.now() - datetime.timedelta(days=7)).strftime('%Y-%m-%dT%H:%M')
     })
 
     conn.request('GET', '/v1/news/all?{}'.format(params))
@@ -31,11 +34,19 @@ for symbol in symbols:
     titles = [article['title'] for article in data['data']]
     urls = [article['url'] for article in data['data']]
 
-    # Store the data in a dictionary
-    company_data = {'symbol': symbol, 'titles': titles, 'urls': urls}
-
-    print(company_data)
-
-
+    sentiment = [article['entities'][0]['sentiment_score'] for article in data['data']]
 
     
+
+    # Store the data in a dictionary
+    company_data = {'symbol': symbol, 'titles': titles, 'urls': urls, 'sentiment': sentiment}
+    
+    # Append the data to the list
+    company_data_list.append(company_data)
+
+# Create a pandas dataframe from the list
+df = pd.DataFrame(company_data_list)
+
+# Write the dataframe to a CSV file
+df.to_csv('company_data.csv', index=False)
+
