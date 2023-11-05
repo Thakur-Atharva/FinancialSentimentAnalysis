@@ -43,7 +43,7 @@ for symbol in symbols:
 df = pd.DataFrame(company_data_list)
 
 # Write the dataframe to a CSV file
-df.to_csv('company_data_yahoo.csv2', index=False)
+df.to_csv('company_data_yahoo2.csv', index=False)
 
     #print(summaries)
 
