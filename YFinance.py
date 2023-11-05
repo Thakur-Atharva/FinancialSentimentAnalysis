@@ -8,7 +8,7 @@ from transformers import pipeline
 # URL = "https://finance.yahoo.com/quote/AAPL/news"
 # URL = "https://finance.yahoo.com/topic/stock-market-news"
 
-df = pd.read_excel('S&P - first 50.xlsx')
+df = pd.read_excel('S&P - first 10 (1).xlsx')
 symbols = df['Symbol'].tolist()
 company_data_list = []
 
@@ -43,7 +43,7 @@ for symbol in symbols:
 df = pd.DataFrame(company_data_list)
 
 # Write the dataframe to a CSV file
-df.to_csv('company_data_yahoo.csv', index=False)
+df.to_csv('company_data_yahoo.csv2', index=False)
 
     #print(summaries)
 
