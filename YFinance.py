@@ -8,7 +8,7 @@ from transformers import pipeline
 # URL = "https://finance.yahoo.com/quote/AAPL/news"
 # URL = "https://finance.yahoo.com/topic/stock-market-news"
 
-df = pd.read_excel('S&P - first 10 (1).xlsx')
+df = pd.read_excel('S&P - demo.xlsx')
 symbols = df['Symbol'].tolist()
 company_data_list = []
 

@@ -25,6 +25,8 @@ testB = 'Revenues for the quarter and nine months grew 4% and 8%, respectively. 
         '• Excluding certain items(1), diluted EPS for the nine months ended July 1, 2023 decreased to $2.94' \
         'from $3.22 in the prior-year period.'
 
+testC = 'The Company posted quarterly revenue of $81.8 billion, down 1 percent year over year, and quarterly earnings per diluted share of $1.26, up 5 percent year over year. ' \
+
 
 def sort_sentiment(list_dict):
     new_list = [{}, {}, {}]
