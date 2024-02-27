@@ -1,4 +1,4 @@
-import trafilatura
+#import trafilatura
 import pandas as pd
 import requests
 
