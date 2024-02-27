@@ -28,22 +28,20 @@ df2 = pd.DataFrame()
 
 text_content = {}
 
-print(articles)
-
-# for symbol in symbols:
-#     url = articles[symbol]
-#     company_text = []
-#     for link in url:
-#         try:
-#             downloaded = trafilatura.fetch_url(link)
-#             result = trafilatura.extract(downloaded)
-#         except:
-#             print('Error')
-#             continue
-#         company_text.append(result)
-#     text_content.update({symbol: company_text})   
+for symbol in symbols:
+    url = articles[symbol]
+    company_text = []
+    for link in url:
+        try:
+            downloaded = trafilatura.fetch_url(link)
+            result = trafilatura.extract(downloaded)
+        except:
+            print('Error')
+            continue
+        company_text.append(result)
+    text_content.update({symbol: company_text})   
     
-# pd.DataFrame.from_dict(text_content, orient='index').to_csv('scraped_articles.csv', header=False)
+pd.DataFrame.from_dict(text_content, orient='index').to_csv('scraped_articles.csv', header=False)
 
-# (pd.read_csv('scraped_articles.csv', header=None)).to_excel('scraped_articles.xlsx', index=False, header=False)
+(pd.read_csv('scraped_articles.csv', header=None)).to_excel('scraped_articles.xlsx', index=False, header=False)
 

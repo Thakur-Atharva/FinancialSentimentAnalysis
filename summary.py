@@ -36,7 +36,7 @@ Better Tech Stock: Microsoft vs. Apple was originally published by The Motley Fo
 def summarize(article):
 
     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-    print ((summarizer(article, max_length=200, min_length=30, do_sample=False))[0]['summary_text'].split('. '))
+    print ((summarizer(article, max_length=1000, min_length=30, do_sample=False))[0]['summary_text'].split('. '))
 
 summarize(ARTICLE)
 
