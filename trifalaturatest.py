@@ -4,15 +4,21 @@ import requests
 
 from bs4 import BeautifulSoup
 
-df = pd.read_excel('S&P - demo.xlsx')
+df = pd.read_excel('S&P - first 50.xlsx')
 
 symbols = df['Symbol'].tolist()
 
 articles = {}
 
 for symbol in symbols:
-    URL = "https://www.google.com/finance/quote/" + symbol + ":NASDAQ?hl=en"
-    page = requests.get(URL)
+
+    try:
+        URL = "https://www.google.com/finance/quote/" + symbol + ":NASDAQ?hl=en"
+        page = requests.get(URL)
+    except:
+        URL = "https://www.google.com/finance/quote/" + symbol + ":NYSE?hl=en"
+        page = requests.get(URL)
+
     soup = BeautifulSoup(page.content, 'html.parser')
 
     urls = []
